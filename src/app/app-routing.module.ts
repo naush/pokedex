@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PokemonsComponent } from './pokemons/pokemons.component';
 
 const routes: Routes = [
-  { path: 'pokemons', component: PokemonsComponent }
+  { path: '', component: PokemonsComponent },
 ];
 
 @NgModule({
