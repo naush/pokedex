@@ -1,9 +1,11 @@
-<div class="pokemon-hero">
-  <h3>#{{ pokemon.number | slice:1:4 }} {{ pokemon.name }}</h3>
-  <img src="/assets/images/{{ pokemon.number }}.png">
-  <ul>
-    <li class="{{ type }}" *ngFor="let type of pokemon.types">
-      {{ type }}
-    </li>
-  </ul>
-</div>
+<button routerLink="/{{ pokemon.number }}">
+  <div class="pokemon-hero">
+    <h3>#{{ pokemon.number | slice:1:4 }} {{ pokemon.name }}</h3>
+    <img src="/assets/images/{{ pokemon.number }}.png">
+    <ul>
+      <li class="{{ type }}" *ngFor="let type of pokemon.types">
+        {{ type }}
+      </li>
+    </ul>
+  </div>
+</button>
