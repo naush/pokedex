@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
-import { PokemonComponent } from './pokemon/pokemon.component';
+import { PokemonHeroComponent } from './pokemon-hero/pokemon-hero.component';
 
 import { PokemonService } from './services/pokemon.service';
 
@@ -12,7 +12,7 @@ import { PokemonService } from './services/pokemon.service';
   declarations: [
     AppComponent,
     PokemonsComponent,
-    PokemonComponent
+    PokemonHeroComponent
   ],
   imports: [
     BrowserModule,

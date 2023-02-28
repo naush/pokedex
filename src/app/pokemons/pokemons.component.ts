@@ -16,6 +16,6 @@ export class PokemonsComponent {
   }
 
   ngOnInit() {
-    this.pokemons = this.pokemonService.get();
+    this.pokemons = this.pokemonService.all();
   }
 }

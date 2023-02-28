@@ -27,7 +27,11 @@ export class PokemonService {
     ];
   }
 
-  public get(): any[] {
+  public all(): any[] {
     return this.pokemons;
+  }
+
+  public get(pokemonNumber: string): any {
+    return this.pokemons.find(pokemon => pokemon.number === pokemonNumber);
   }
 }
