@@ -19,7 +19,7 @@ export class PokemonDetailsComponent {
   ngOnInit() {
     this.activatedRoute.paramMap
       .subscribe(paramMap => {
-        let pokemonNumber = paramMap.get('number')
+        let pokemonNumber = Number(paramMap.get('number'))
 
         if (pokemonNumber) {
           this.pokemon = this.pokemonService.get(pokemonNumber);

@@ -1,43 +1,60 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  pokemons: Pokemon[];
+  baseUrl: string;
+  pokemons!: Pokemon[];
 
-  constructor() {
-    this.pokemons = [
-      {
-        number: '0001',
-        name: 'Bulbasaur',
-        types: ['Grass', 'Poison'],
-      },
-      {
-        number: '0002',
-        name: 'Ivysaur',
-        types: ['Grass', 'Poison'],
-      },
-      {
-        number: '0003',
-        name: 'Venusaur',
-        types: ['Grass', 'Poison'],
-      },
-    ];
+  constructor(private http: HttpClient) {
+    this.baseUrl = 'https://pokeapi.co/api/v2';
   }
 
-  public all(): Pokemon[] {
-    return this.pokemons;
+  public all() {
+    return this.http.get<PokedexResponse>(`${this.baseUrl}/pokedex/kanto`).pipe(
+      map((response: PokedexResponse) => {
+        this.pokemons = response.pokemon_entries.map((pokemon_entry: any) => {
+          return {
+            number: pokemon_entry.entry_number,
+            name: pokemon_entry.pokemon_species.name,
+          }
+        });
+
+        return this.pokemons;;
+      },
+      catchError)
+    );
   }
 
-  public get(pokemonNumber: string): any {
+  public get(pokemonNumber: number): any {
     return this.pokemons.find(pokemon => pokemon.number === pokemonNumber);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.log(error.message);
+
+    return throwError('A data error occurred, please try again.');
   }
 }
 
-export interface Pokemon {
-  number: string;
+interface PokedexResponse {
+  description: any[];
+  id: number;
+  is_main_series: boolean;
   name: string;
-  types: string[];
+  names: string[];
+  pokemon_entries: any[];
+  region: any;
+  version_groups: any[];
+}
+
+export interface Pokemon {
+  number: number;
+  name: string;
+  types?: string[];
 }

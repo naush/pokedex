@@ -13,6 +13,9 @@ export class PokemonsComponent {
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit() {
-    this.pokemons = this.pokemonService.all();
+    this.pokemonService.all()
+      .subscribe(pokemons => {
+        this.pokemons = pokemons;
+      });
   }
 }
