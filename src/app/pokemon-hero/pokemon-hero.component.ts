@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Pokemon } from '../services/pokemon.service';
 
 @Component({
   selector: 'pokemon-hero',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./pokemon-hero.component.less']
 })
 export class PokemonHeroComponent {
-  @Input() pokemon: any;
+  @Input() pokemon!: Pokemon;
 }

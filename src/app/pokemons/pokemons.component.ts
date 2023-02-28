@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PokemonService } from '../services/pokemon.service';
+import { PokemonService, Pokemon } from '../services/pokemon.service';
 
 
 @Component({
@@ -8,11 +8,9 @@ import { PokemonService } from '../services/pokemon.service';
   styleUrls: ['./pokemons.component.less']
 })
 export class PokemonsComponent {
-  pokemons: any[];
+  pokemons!: Pokemon[];
 
-  constructor(private pokemonService: PokemonService) {
-    this.pokemons = [];
-  }
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit() {
     this.pokemons = this.pokemonService.all();

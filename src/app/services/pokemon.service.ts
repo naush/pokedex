@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PokemonService {
-  pokemons: any[];
+  pokemons: Pokemon[];
 
   constructor() {
     this.pokemons = [
@@ -27,11 +27,17 @@ export class PokemonService {
     ];
   }
 
-  public all(): any[] {
+  public all(): Pokemon[] {
     return this.pokemons;
   }
 
   public get(pokemonNumber: string): any {
     return this.pokemons.find(pokemon => pokemon.number === pokemonNumber);
   }
+}
+
+export interface Pokemon {
+  number: string;
+  name: string;
+  types: string[];
 }
