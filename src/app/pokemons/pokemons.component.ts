@@ -4,7 +4,7 @@ import { PokemonService } from '../services/pokemon.service';
 
 
 @Component({
-  selector: 'app-pokemons',
+  selector: 'pokemons',
   templateUrl: './pokemons.component.html',
   styleUrls: ['./pokemons.component.less']
 })
