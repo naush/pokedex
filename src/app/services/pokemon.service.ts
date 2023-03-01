@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-
+import { throwError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
   baseUrl: string;
-  pokemons!: Pokemon[];
+  pokemons: Pokemon[];
+  pokemon!: Pokemon;
 
   constructor(private http: HttpClient) {
     this.baseUrl = 'https://pokeapi.co/api/v2';
+    this.pokemons = [];
   }
 
   public all() {
@@ -32,7 +33,21 @@ export class PokemonService {
   }
 
   public get(pokemonNumber: number): any {
-    return this.pokemons.find(pokemon => pokemon.number === pokemonNumber);
+    return this.http.get<PokemonResponse>(`${this.baseUrl}/pokemon/${pokemonNumber}`).pipe(
+      map((response: PokemonResponse) => {
+        this.pokemon = {
+          number: response.id,
+          name: response.name,
+          height: response.height,
+          weight: response.weight,
+          stats: response.stats,
+          types: response.types.map(t => t.type.name),
+        }
+
+        return this.pokemon;;
+      },
+      catchError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -53,8 +68,20 @@ interface PokedexResponse {
   version_groups: any[];
 }
 
+interface PokemonResponse {
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  stats: any;
+  types: any[];
+}
+
 export interface Pokemon {
   number: number;
   name: string;
+  height?: number;
+  weight?: number;
+  stats?: any;
   types?: string[];
 }

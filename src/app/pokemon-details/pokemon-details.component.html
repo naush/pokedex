@@ -1,1 +1,12 @@
-<pokemon-hero [pokemon]="pokemon"></pokemon-hero>
+<section>
+  <pokemon-hero [pokemon]="pokemon"></pokemon-hero>
+  <div class="pokemon-stats">
+    <h1>Base Stats</h1>
+    <dl>
+      <ng-template ngFor let-stat [ngForOf]="pokemon.stats">
+        <dt>{{ stat.stat.name | uppercase }}</dt>
+        <dd>{{ stat.base_stat }}</dd>
+      </ng-template>
+    </dl>
+  </div>
+</section>

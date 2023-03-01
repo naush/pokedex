@@ -22,7 +22,10 @@ export class PokemonDetailsComponent {
         let pokemonNumber = Number(paramMap.get('number'))
 
         if (pokemonNumber) {
-          this.pokemon = this.pokemonService.get(pokemonNumber);
+          this.pokemon = this.pokemonService.get(pokemonNumber)
+            .subscribe((pokemon: Pokemon) => {
+              this.pokemon = pokemon;
+            });
         }
       })
   }
