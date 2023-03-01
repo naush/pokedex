@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, of } from 'rxjs';
 
+// LO: Dependency Injection & Services
 @Injectable({
   providedIn: 'root',
 })
@@ -11,6 +12,7 @@ export class PokemonService {
   pokemons: Pokemon[];
   pokemon!: Pokemon;
 
+  // LO: HTTP
   constructor(private http: HttpClient) {
     this.baseUrl = 'https://pokeapi.co/api/v2';
     this.pokemons = [];

@@ -1,11 +1,16 @@
 <section>
+  <!-- LO: Component -->
   <pokemon-hero [pokemon]="pokemon"></pokemon-hero>
   <div class="pokemon-stats">
     <h1>Base Stats</h1>
     <dl>
+      <!-- LO: Structural Directive -->
       <ng-template ngFor let-stat [ngForOf]="pokemon.stats">
-        <dt>{{ stat.stat.name | uppercase }}</dt>
-        <dd>{{ stat.base_stat }}</dd>
+        <div class="pokemon-stat">
+          <!-- LO: Pipe -->
+          <dt>{{ stat.stat.name | uppercase }}</dt>
+          <dd>{{ stat.base_stat }}</dd>
+        </div>
       </ng-template>
     </dl>
   </div>

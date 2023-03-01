@@ -3,11 +3,11 @@ import { PokemonService, Pokemon } from '../services/pokemon.service';
 
 
 @Component({
-  selector: 'pokemons',
-  templateUrl: './pokemons.component.html',
-  styleUrls: ['./pokemons.component.less']
+  selector: 'pokemon-list',
+  templateUrl: './pokemon-list.component.html',
+  styleUrls: ['./pokemon-list.component.less']
 })
-export class PokemonsComponent {
+export class PokemonListComponent {
   pokemons!: Pokemon[];
 
   constructor(private pokemonService: PokemonService) {}
