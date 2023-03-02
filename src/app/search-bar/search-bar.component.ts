@@ -9,6 +9,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./search-bar.component.less']
 })
 export class SearchBarComponent {
+  // LO: Component Output
   @Output() queryChange = new EventEmitter<string>;
   // LO: Reactive Forms
   query = new FormControl();

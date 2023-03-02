@@ -7,5 +7,6 @@ import { Pokemon } from '../services/pokemon.service';
   styleUrls: ['./pokemon-hero.component.less']
 })
 export class PokemonHeroComponent {
+  // LO: Component Input
   @Input() pokemon!: Pokemon;
 }
