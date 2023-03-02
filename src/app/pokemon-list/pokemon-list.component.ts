@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PokemonService, Pokemon } from '../services/pokemon.service';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -8,6 +9,7 @@ import { PokemonService, Pokemon } from '../services/pokemon.service';
   styleUrls: ['./pokemon-list.component.less']
 })
 export class PokemonListComponent {
+  cachedPokemons!: Pokemon[];
   pokemons!: Pokemon[];
 
   constructor(private pokemonService: PokemonService) {}
@@ -15,7 +17,13 @@ export class PokemonListComponent {
   ngOnInit() {
     this.pokemonService.all()
       .subscribe(pokemons => {
+        this.cachedPokemons = pokemons;
         this.pokemons = pokemons;
       });
+  }
+
+  onQueryChange(q: string) {
+    this.pokemons = this.cachedPokemons
+      .filter((pokemon: Pokemon) => pokemon.name.includes(q.toLowerCase()));
   }
 }
