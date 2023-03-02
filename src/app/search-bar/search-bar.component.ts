@@ -9,13 +9,13 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./search-bar.component.less']
 })
 export class SearchBarComponent {
-  // LO: Component Output
+  // LO: [Angular] Component Output
   @Output() queryChange = new EventEmitter<string>;
-  // LO: Reactive Forms
+  // LO: [Angular] Reactive Forms
   query = new FormControl();
 
   ngOnInit() {
-    // LO: RxJS Operators
+    // LO: [RxJS] Observable & Operators
     this.query
       .valueChanges
       .pipe(

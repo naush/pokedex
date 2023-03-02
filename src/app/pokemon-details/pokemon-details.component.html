@@ -1,12 +1,12 @@
 <section>
-  <!-- LO: Component -->
+  <!-- LO: [Angular] Component -->
   <pokemon-hero [pokemon]="pokemon"></pokemon-hero>
   <div class="pokemon-stats">
     <h1>Base Stats</h1>
     <dl>
-      <!-- LO: Structural Directive -->
+      <!-- LO: [Angular] Structural Directive -->
       <ng-template ngFor let-stat [ngForOf]="pokemon.stats">
-        <!-- LO: Pipe -->
+        <!-- LO: [Angular] Pipe -->
         <dt>{{ stat.stat.name | uppercase }}</dt>
         <dd>
           <progress max="300" value="{{ stat.base_stat }}"></progress>
