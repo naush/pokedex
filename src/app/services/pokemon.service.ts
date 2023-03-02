@@ -15,7 +15,7 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
-  public all() {
+  public all(): Observable<Pokemon[]> {
     if (this.pokemons) {
       return of(this.pokemons);
     }
