@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { PokemonService, Pokemon } from '../services/pokemon.service';
 import { filter } from 'rxjs/operators';
 
-
 @Component({
   selector: 'pokemon-list',
   templateUrl: './pokemon-list.component.html',

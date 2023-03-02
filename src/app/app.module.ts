@@ -11,6 +11,7 @@ import { PokemonHeroComponent } from './pokemon-hero/pokemon-hero.component';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PokemonHeroNamePipe } from './pipes/pokemon-hero-name.pipe';
+import { PokemonTypeDirective } from './directives/pokemon-type.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PokemonHeroNamePipe } from './pipes/pokemon-hero-name.pipe';
     PokemonDetailsComponent,
     SearchBarComponent,
     PokemonHeroNamePipe,
+    PokemonTypeDirective,
   ],
   imports: [
     BrowserModule,
