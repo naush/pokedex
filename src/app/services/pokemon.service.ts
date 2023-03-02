@@ -8,15 +8,12 @@ import { throwError, of } from 'rxjs';
   providedIn: 'root',
 })
 export class PokemonService {
-  baseUrl: string;
-  region: string;
+  baseUrl: string = 'https://pokeapi.co/api/v2';
+  region: string = 'kanto';
   pokemons!: Pokemon[];
   pokemon!: Pokemon;
 
-  constructor(private http: HttpClient) {
-    this.baseUrl = 'https://pokeapi.co/api/v2';
-    this.region = 'kanto';
-  }
+  constructor(private http: HttpClient) {}
 
   public all() {
     if (this.pokemons) {
@@ -39,6 +36,7 @@ export class PokemonService {
     );
   }
 
+  // TODO: Implement with BehaviorSubject
   public get(pokemonNumber: number): any {
     return this.http.get<PokemonResponse>(`${this.baseUrl}/pokemon/${pokemonNumber}`).pipe(
       map((response: PokemonResponse) => {
