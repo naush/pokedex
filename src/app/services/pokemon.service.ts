@@ -36,7 +36,6 @@ export class PokemonService {
     );
   }
 
-  // TODO: Implement with BehaviorSubject
   public get(pokemonNumber: number): Observable<Pokemon> {
     return this.http.get<PokemonResponse>(`${this.baseUrl}/pokemon/${pokemonNumber}`).pipe(
       map((response: PokemonResponse) => {
