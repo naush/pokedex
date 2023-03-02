@@ -10,16 +10,19 @@ import { throwError, of } from 'rxjs';
 export class PokemonService {
   baseUrl: string;
   region: string;
-  pokemons: Pokemon[];
+  pokemons!: Pokemon[];
   pokemon!: Pokemon;
 
   constructor(private http: HttpClient) {
     this.baseUrl = 'https://pokeapi.co/api/v2';
     this.region = 'kanto';
-    this.pokemons = [];
   }
 
   public all() {
+    if (this.pokemons) {
+      return of(this.pokemons);
+    }
+
     // LO: [Angular] HTTP
     return this.http.get<PokedexResponse>(`${this.baseUrl}/pokedex/${this.region}`).pipe(
       map((response: PokedexResponse) => {
@@ -30,9 +33,9 @@ export class PokemonService {
           }
         });
 
-        return this.pokemons;;
+        return this.pokemons;
       },
-      catchError)
+      catchError),
     );
   }
 

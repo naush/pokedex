@@ -9,21 +9,22 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./pokemon-list.component.less']
 })
 export class PokemonListComponent {
-  cachedPokemons!: Pokemon[];
   pokemons!: Pokemon[];
 
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit() {
     this.pokemonService.all()
-      .subscribe(pokemons => {
-        this.cachedPokemons = pokemons;
+      .subscribe((pokemons: Pokemon[]) => {
         this.pokemons = pokemons;
       });
   }
 
   onQueryChange(q: string) {
-    this.pokemons = this.cachedPokemons
-      .filter((pokemon: Pokemon) => pokemon.name.includes(q.toLowerCase()));
+    this.pokemonService.all()
+      .subscribe((pokemons: Pokemon[]) => {
+        this.pokemons = pokemons
+          .filter((pokemon: Pokemon) => pokemon.name.includes(q.toLowerCase()));
+      });
   }
 }
