@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { throwError, of } from 'rxjs';
+import { throwError, of, Observable } from 'rxjs';
 
 // LO: [Angular] Dependency Injection & Services
 @Injectable({
@@ -37,7 +37,7 @@ export class PokemonService {
   }
 
   // TODO: Implement with BehaviorSubject
-  public get(pokemonNumber: number): any {
+  public get(pokemonNumber: number): Observable<Pokemon> {
     return this.http.get<PokemonResponse>(`${this.baseUrl}/pokemon/${pokemonNumber}`).pipe(
       map((response: PokemonResponse) => {
         this.pokemon = {
