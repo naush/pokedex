@@ -6,11 +6,11 @@
     <dl>
       <!-- LO: Structural Directive -->
       <ng-template ngFor let-stat [ngForOf]="pokemon.stats">
-        <div class="pokemon-stat">
-          <!-- LO: Pipe -->
-          <dt>{{ stat.stat.name | uppercase }}</dt>
-          <dd>{{ stat.base_stat }}</dd>
-        </div>
+        <!-- LO: Pipe -->
+        <dt>{{ stat.stat.name | uppercase }}</dt>
+        <dd>
+          <progress max="300" value="{{ stat.base_stat }}"></progress>
+        </dd>
       </ng-template>
     </dl>
   </div>

@@ -17,22 +17,26 @@ pokemon-hero {
   border-radius: 4px;
   width: 200px;
   height: 320px;
+  cursor: pointer;
 
   & h1 {
     text-align: center;
   }
 
   & dl {
-    padding: 0 8px;
+    padding: 0 16px;
   }
-}
 
-.pokemon-stat {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
+  & dt {
+    font-size: 12px;
+  }
 
   & dd {
-    font-weight: 800;
+    margin: 0 0 8px;
+  }
+
+  progress {
+    height: 16px;
+    width: 100%;
   }
 }
