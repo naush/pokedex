@@ -34,6 +34,17 @@ describe('PokemonService', () => {
 
       req.flush(allResponse);
     });
+
+    it('does not request again', (done: DoneFn) => {
+      service.pokemons = [];
+
+      service.all().subscribe((response) => {
+        expect(response.length).toBe(0);
+        done();
+      });
+
+      handler.expectNone(`${service.baseUrl}/pokedex/${service.region}`);
+    });
   });
 
   describe('get', () => {

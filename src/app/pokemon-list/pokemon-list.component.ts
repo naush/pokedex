@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonService } from '../services/pokemon.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'pokemon-list',
@@ -22,9 +21,13 @@ export class PokemonListComponent {
 
   onQueryChange(q: string) {
     this.pokemonService.all()
-      .subscribe((pokemons: Pokemon[]) => {
-        this.pokemons = pokemons
-          .filter((pokemon: Pokemon) => pokemon.name.includes(q.toLowerCase()));
-      });
+      .subscribe((pokemons: Pokemon[]) => (
+        this.pokemons = this.filterByName(pokemons, q)
+      ));
+  }
+
+  private filterByName(pokemons: Pokemon[], q: string): Pokemon[] {
+    return pokemons
+      .filter((pokemon: Pokemon) => pokemon.name.includes(q.toLowerCase()));
   }
 }

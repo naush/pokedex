@@ -17,7 +17,6 @@ describe('PokemonDetailsComponent', () => {
   const pokemon: Pokemon = {
     number: 1,
     name: 'bulbasaur',
-    stats: [ { stat: { name: 'hp' }, base_stat: 10, } ]
   };
 
   beforeEach(async () => {
