@@ -5,30 +5,31 @@ import { Directive, ElementRef, Input } from '@angular/core';
   selector: '[pokemonType]'
 })
 export class PokemonTypeDirective {
-  private static TYPE_COLORS = new Map<string, string>([
-    ['normal', '#A8A77A'],
-    ['fire', '#EE8130'],
-    ['water', '#6390F0'],
-    ['electric', '#F7D02C'],
-    ['grass', '#7AC74C'],
-    ['ice', '#96D9D6'],
-    ['fighting', '#C22E28'],
-    ['poison', '#A33EA1'],
-    ['ground', '#E2BF65'],
-    ['flying', '#A98FF3'],
-    ['psychic', '#F95587'],
-    ['bug', '#A6B91A'],
-    ['rock', '#B6A136'],
-    ['ghost', '#735797'],
-    ['dragon', '#6F35FC'],
-    ['dark', '#705746'],
-    ['steel', '#B7B7CE'],
-    ['fairy', '#D685AD'],
+  public static TYPE_COLORS = new Map<string, string>([
+    ['normal', 'rgb(168, 167, 122)'],
+    ['fire', 'rgb(238, 129, 48)'],
+    ['water', 'rgb(99, 144, 240)'],
+    ['electric', 'rgb(247, 208, 44)'],
+    ['grass', 'rgb(122, 199, 76)'],
+    ['ice', 'rgb(150, 217, 214)'],
+    ['fighting', 'rgb(194, 46, 40)'],
+    ['poison', 'rgb(163, 62, 161)'],
+    ['ground', 'rgb(226, 191, 101)'],
+    ['flying', 'rgb(169, 143, 243)'],
+    ['psychic', 'rgb(249, 85, 135)'],
+    ['bug', 'rgb(166, 185, 26)'],
+    ['rock', 'rgb(182, 161, 54)'],
+    ['ghost', 'rgb(115, 87, 151)'],
+    ['dragon', 'rgb(111, 53, 252)'],
+    ['dark', 'rgb(112, 87, 70)'],
+    ['steel', 'rgb(183, 183, 206)'],
+    ['fairy', 'rgb(214, 133, 173)'],
   ]);
 
   constructor(private el: ElementRef) {}
 
   @Input() set pokemonType(value: string) {
-    this.el.nativeElement.style.backgroundColor = PokemonTypeDirective.TYPE_COLORS.get(value);
+    this.el.nativeElement.style.backgroundColor =
+      PokemonTypeDirective.TYPE_COLORS.get(value) ?? PokemonTypeDirective.TYPE_COLORS.get('normal');
   }
 }
