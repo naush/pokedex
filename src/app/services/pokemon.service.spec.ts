@@ -8,10 +8,10 @@ import { PokemonService } from './pokemon.service';
 import allResponse from './fixtures/all.json';
 import oneResponse from './fixtures/one.json';
 
-// LO: [AngularTesting] Testing services
+// LO: [Testing] Services
 describe('PokemonService', () => {
   let service: PokemonService;
-  // LO: [AngularTesting] Testing HTTP requests
+  // LO: [Testing] HTTP
   let handler: HttpTestingController;
 
   beforeEach(() => {

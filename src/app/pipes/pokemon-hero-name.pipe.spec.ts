@@ -1,9 +1,8 @@
 import { TitleCasePipe } from '@angular/common';
 
 import { PokemonHeroNamePipe } from './pokemon-hero-name.pipe';
-import { Pokemon } from '../services/pokemon.service';
 
-// LO: [AngularTesting] Testing pipes
+// LO: [Testing] Pipes
 describe('PokemonHeroNamePipe', () => {
   const titleCasePipe = new TitleCasePipe();
   const pipe = new PokemonHeroNamePipe(titleCasePipe);
