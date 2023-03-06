@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
-import { Pokemon } from '../services/pokemon.service';
+import { Pokemon } from '../models/pokemon.model';
 
 // LO: [Angular] Custom Pipe
 @Pipe({name: 'heroName'})

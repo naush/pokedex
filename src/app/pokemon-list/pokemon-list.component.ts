@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { PokemonService, Pokemon } from '../services/pokemon.service';
+import { Pokemon } from '../models/pokemon.model';
+import { PokemonService } from '../services/pokemon.service';
 import { filter } from 'rxjs/operators';
 
 @Component({

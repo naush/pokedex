@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, of, Observable } from 'rxjs';
+import { Pokemon, PokedexResponse, PokemonResponse } from '../models/pokemon.model';
 
 // LO: [Angular] Dependency Injection & Services
 @Injectable({
@@ -39,15 +40,7 @@ export class PokemonService {
   public get(pokemonNumber: number): Observable<Pokemon> {
     return this.http.get<PokemonResponse>(`${this.baseUrl}/pokemon/${pokemonNumber}`).pipe(
       map((response: PokemonResponse) => {
-        this.pokemon = {
-          number: response.id,
-          name: response.name,
-          height: response.height,
-          weight: response.weight,
-          stats: response.stats,
-          types: response.types.map(t => t.type.name),
-        }
-
+        this.pokemon = new Pokemon(response);
         return this.pokemon;;
       },
       catchError)
@@ -59,33 +52,4 @@ export class PokemonService {
 
     return throwError('A data error occurred, please try again.');
   }
-}
-
-interface PokedexResponse {
-  description: any[];
-  id: number;
-  is_main_series: boolean;
-  name: string;
-  names: string[];
-  pokemon_entries: any[];
-  region: any;
-  version_groups: any[];
-}
-
-interface PokemonResponse {
-  id: number;
-  name: string;
-  height: number;
-  weight: number;
-  stats: any;
-  types: any[];
-}
-
-export interface Pokemon {
-  number: number;
-  name: string;
-  height?: number;
-  weight?: number;
-  stats?: any;
-  types?: string[];
 }
