@@ -1,6 +1,9 @@
 import { PokemonTypeDirective } from './pokemon-type.directive';
 
 describe('PokemonTypeDirective', () => {
-  it('should create an instance', () => {
+  it('sets background color', () => {
+  });
+
+  it('handles unknown type', () => {
   });
 });

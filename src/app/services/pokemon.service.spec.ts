@@ -5,8 +5,8 @@ import { HttpClientTestingModule, HttpTestingController, } from '@angular/common
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonService } from './pokemon.service';
 
-import allResponse from './fixtures/all.json';
-import oneResponse from './fixtures/one.json';
+import allResponse from '../spec//fixtures/all.json';
+import oneResponse from '../spec/fixtures/one.json';
 
 // LO: [Testing] Services
 describe('PokemonService', () => {
