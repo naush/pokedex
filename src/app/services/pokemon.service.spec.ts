@@ -41,7 +41,7 @@ describe('PokemonService', () => {
       const pokemonNumber = 1;
 
       service.get(pokemonNumber).subscribe((response) => {
-        expect(response).toBe(new Pokemon(oneResponse));
+        expect(response).toEqual(new Pokemon(oneResponse));
 
         done();
       });
