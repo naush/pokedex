@@ -24,7 +24,7 @@ describe('PokemonService', () => {
   });
 
   describe('all', () => {
-    it('gets a list of pokemon', (done: DoneFn) => {
+    it('responds with a list of pokemon', (done: DoneFn) => {
       service.all().subscribe((response) => {
         expect(response.length).toBe(151);
         done();
@@ -37,7 +37,7 @@ describe('PokemonService', () => {
   });
 
   describe('get', () => {
-    it('gets one pokemon', (done: DoneFn) => {
+    it('responds with one pokemon', (done: DoneFn) => {
       const pokemonNumber = 1;
 
       service.get(pokemonNumber).subscribe((response) => {
