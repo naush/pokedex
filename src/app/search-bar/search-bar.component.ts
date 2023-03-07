@@ -12,13 +12,14 @@ export class SearchBarComponent {
   @Output() queryChange = new EventEmitter<string>;
   // LO: [Angular] Reactive Forms
   query = new FormControl();
+  public static DEBOUNCE_TIME = 500;
 
   ngOnInit() {
     // LO: [RxJS] Observable & Operators
     this.query
       .valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(SearchBarComponent.DEBOUNCE_TIME),
         distinctUntilChanged(),
       )
       .subscribe((q: any) => this.queryChange.emit(q));
