@@ -26,7 +26,7 @@ describe('PokemonService', () => {
   describe('all', () => {
     it('responds with a list of pokemon', (done: DoneFn) => {
       service.all().subscribe((response) => {
-        expect(response.length).toBe(151);
+        expect(response).toHaveSize(151);
         done();
       });
 
@@ -39,7 +39,7 @@ describe('PokemonService', () => {
       service.pokemons = [];
 
       service.all().subscribe((response) => {
-        expect(response.length).toBe(0);
+        expect(response).toHaveSize(0);
         done();
       });
 
