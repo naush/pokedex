@@ -1,11 +1,17 @@
-<a routerLink="/{{ pokemon.number }}">
-  <div class="pokemon-hero">
-    <h3>{{ pokemon | heroName }}</h3>
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon.number }}.png">
-    <ul>
-      <li pokemonType="{{ type }}" *ngFor="let type of pokemon.types">
-        {{ type | titlecase }}
-      </li>
-    </ul>
+<div class="pokemon-hero">
+  <h3>{{ pokemon | heroName }}</h3>
+  <img class="profile" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon.number }}.png">
+  <div *ngIf="action" class="actions">
+    <!-- https://www.flaticon.com/free-icon/file_9385278?related_id=9385278&origin=pack -->
+    <a routerLink="/{{ pokemon.number }}">
+      <img class="icon details" src="./assets/images/file.png">
+    </a>
+    <!-- https://www.flaticon.com/free-icon/heart_9385291?related_id=9385291&origin=pack -->
+    <img class="icon favorite" src="./assets/images/heart.png">
   </div>
-</a>
+  <ul>
+    <li pokemonType="{{ type }}" *ngFor="let type of pokemon.types">
+      {{ type | titlecase }}
+    </li>
+  </ul>
+</div>

@@ -9,4 +9,5 @@ import { Pokemon } from '../models/pokemon.model';
 export class PokemonHeroComponent {
   // LO: [Angular] Component Input
   @Input() pokemon!: Pokemon;
+  @Input() action: boolean = false;
 }
