@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { Pokemon } from '../models/pokemon.model';
 
 @Component({
@@ -9,5 +9,5 @@ import { Pokemon } from '../models/pokemon.model';
 export class PokemonHeroComponent {
   // LO: [Angular] Component Input
   @Input() pokemon!: Pokemon;
-  @Input() action: boolean = false;
+  @Input() showActions: boolean = false;
 }

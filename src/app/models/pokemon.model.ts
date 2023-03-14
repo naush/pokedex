@@ -25,6 +25,7 @@ export class Pokemon {
   public readonly weight?: number;
   public readonly stats?: any;
   public readonly types?: string[];
+  public readonly favorite?: boolean;
 
   constructor(response: PokemonResponse) {
     this.number = response.id;
