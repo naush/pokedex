@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
@@ -36,6 +37,11 @@ describe('PokemonListComponent', () => {
       }
     );
 
+    const initialState = {
+      pokemons: { pokemons },
+      favorites: { favorites: [] },
+    }
+
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
@@ -43,11 +49,13 @@ describe('PokemonListComponent', () => {
           provide: PokemonService,
           useValue: pokemonService,
         },
+        provideMockStore({ initialState } ),
       ],
       declarations: [ PokemonListComponent ]
     })
     .compileComponents();
 
+    TestBed.inject(MockStore);
     fixture = TestBed.createComponent(PokemonListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

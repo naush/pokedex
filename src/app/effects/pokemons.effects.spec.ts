@@ -1,18 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
+import { PokemonService } from '../services/pokemon.service';
 import { PokemonsEffects } from './pokemons.effects';
 
 describe('PokemonsEffects', () => {
   let actions$: Observable<any>;
   let effects: PokemonsEffects;
+  let pokemonServiceMock: PokemonService;
+  let pokemons: any[];
 
   beforeEach(() => {
+    pokemonServiceMock = jasmine.createSpyObj(
+      'PokemonService',
+      { all: of(pokemons) },
+    );
+
     TestBed.configureTestingModule({
       providers: [
         PokemonsEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$),
+        {
+          provide: PokemonService,
+          useValue: pokemonServiceMock,
+        }
       ]
     });
 

@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { PokemonHeroNamePipe } from '../pipes/pokemon-hero-name.pipe';
 import { PokemonHeroComponent } from './pokemon-hero.component';
@@ -11,12 +12,17 @@ describe('PokemonHeroComponent', () => {
   const pokemon = { name: 'Pikachu', number: 25, types: ['electric'] };
 
   beforeEach(async () => {
+    const initialState = {
+      favorites: { favorites: [] },
+    }
+
     await TestBed.configureTestingModule({
       providers: [
         {
           provide: TitleCasePipe,
           useValue: new TitleCasePipe(),
-        }
+        },
+        provideMockStore({ initialState }),
       ],
       declarations: [
         PokemonHeroComponent,
@@ -25,6 +31,8 @@ describe('PokemonHeroComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
+
+    TestBed.inject(MockStore);
 
     fixture = TestBed.createComponent(PokemonHeroComponent);
     component = fixture.componentInstance;

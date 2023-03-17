@@ -17,6 +17,8 @@ export class PokemonListComponent {
   constructor(private pokemonService: PokemonService, private store: Store<State>) {}
 
   ngOnInit() {
+    this.store.dispatch(loadPokemons());
+
     // LO: [NgRx] Store
     this.store
       .select(state => state.favorites)
@@ -25,8 +27,6 @@ export class PokemonListComponent {
     this.store
       .select(state => state.pokemons)
       .subscribe(pokes => this.pokemons = pokes.pokemons);
-
-    this.store.dispatch(loadPokemons());
   }
 
   onQueryChange(q: string) {

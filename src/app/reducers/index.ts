@@ -21,5 +21,4 @@ export const reducers: ActionReducerMap<State> = {
   pokemons: pokemonsReducer,
 };
 
-
 export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
