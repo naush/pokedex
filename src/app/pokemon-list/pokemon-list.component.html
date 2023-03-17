@@ -3,5 +3,6 @@
   <pokemon-hero
     *ngFor="let pokemon of pokemons"
     [showActions]="true"
+    [isFavorite]="isFavorite(pokemon)"
     [pokemon]="pokemon"></pokemon-hero>
 </div>

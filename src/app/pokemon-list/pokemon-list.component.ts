@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonService } from '../services/pokemon.service';
+import { State } from '../reducers';
 
 @Component({
   selector: 'pokemon-list',
@@ -9,8 +11,13 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class PokemonListComponent {
   pokemons!: Pokemon[];
+  favorites!: number[];
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(private pokemonService: PokemonService, private store: Store<State>) {
+    store
+      .select(state => state.favorites)
+      .subscribe(favs => this.favorites = favs.favorites);
+  }
 
   ngOnInit() {
     this.pokemonService.all()
@@ -24,6 +31,10 @@ export class PokemonListComponent {
       .subscribe((pokemons: Pokemon[]) => (
         this.pokemons = this.filterByName(pokemons, q)
       ));
+  }
+
+  isFavorite(pokemon: Pokemon): boolean {
+    return this.favorites.includes(pokemon.number);
   }
 
   private filterByName(pokemons: Pokemon[], q: string): Pokemon[] {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,8 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { PokemonHeroNamePipe } from './pipes/pokemon-hero-name.pipe';
 import { PokemonTypeDirective } from './directives/pokemon-type.directive';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { PokemonTypeDirective } from './directives/pokemon-type.directive';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
   ],
   providers: [TitleCasePipe],
   bootstrap: [AppComponent]

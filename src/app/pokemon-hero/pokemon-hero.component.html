@@ -1,4 +1,4 @@
-<div class="pokemon-hero" [class.favorite]="pokemon.favorite">
+<div class="pokemon-hero" [class.favorite]="isFavorite">
   <h3>{{ pokemon | heroName }}</h3>
   <img class="profile" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon.number }}.png">
   <div *ngIf="showActions" class="actions">
@@ -7,7 +7,11 @@
       <img class="icon details" src="./assets/images/file.png">
     </a>
     <!-- https://www.flaticon.com/free-icon/heart_9385291?related_id=9385291&origin=pack -->
-    <img class="icon favorite" src="./assets/images/heart.png">
+    <img
+      class="icon favorite"
+      src="./assets/images/heart.png"
+      (click)="toggleFavorite(pokemon.number)"
+    >
   </div>
   <ul>
     <li pokemonType="{{ type }}" *ngFor="let type of pokemon.types">
