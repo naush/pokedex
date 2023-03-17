@@ -8,14 +8,17 @@ import {
 } from '@ngrx/store';
 
 import { favoritesReducer, FavoritesState } from './favorites.reducer';
+import { pokemonsReducer, PokemonsState } from './pokemons.reducer';
 
 
 export interface State {
   favorites: FavoritesState,
+  pokemons: PokemonsState,
 }
 
 export const reducers: ActionReducerMap<State> = {
   favorites: favoritesReducer,
+  pokemons: pokemonsReducer,
 };
 
 

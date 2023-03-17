@@ -12,6 +12,7 @@ export const initialState: FavoritesState = {
   favorites: []
 };
 
+// LO: [NgRx] Reducer
 export const favoritesReducer = createReducer(
   initialState,
   on(favorite, (state: FavoritesState, { number }) => {

@@ -14,6 +14,8 @@ import { PokemonHeroNamePipe } from './pipes/pokemon-hero-name.pipe';
 import { PokemonTypeDirective } from './directives/pokemon-type.directive';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { PokemonsEffects } from './effects/pokemons.effects';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { reducers, metaReducers } from './reducers';
     HttpClientModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([PokemonsEffects]),
   ],
   providers: [TitleCasePipe],
   bootstrap: [AppComponent]

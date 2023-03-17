@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
+// LO: [NgRx] Action
 export const favorite = createAction(
   '[Favorite] Favorite Pokemon',
   props<{ number: number }>()
