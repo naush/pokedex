@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonService } from '../services/pokemon.service';
 import { State } from '../reducers';
-import { loadPokemons } from '../actions/pokemons.actions';
+import { loadPokemons, filterPokemons } from '../actions/pokemons.actions';
 
 @Component({
   selector: 'pokemon-list',
@@ -30,18 +30,10 @@ export class PokemonListComponent {
   }
 
   onQueryChange(q: string) {
-    this.pokemonService.all()
-      .subscribe((pokemons: Pokemon[]) => (
-        this.pokemons = this.filterByName(pokemons, q)
-      ));
+    this.store.dispatch(filterPokemons({ q }));
   }
 
   isFavorite(pokemon: Pokemon): boolean {
     return this.favorites.includes(pokemon.number);
-  }
-
-  private filterByName(pokemons: Pokemon[], q: string): Pokemon[] {
-    return pokemons
-      .filter((pokemon: Pokemon) => pokemon.name.includes(q.toLowerCase()));
   }
 }

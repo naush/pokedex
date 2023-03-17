@@ -5,6 +5,11 @@ export const loadPokemons = createAction(
   '[Pokemons] Load Pokemons'
 );
 
+export const filterPokemons = createAction(
+  '[Pokemons] Filter Pokemons',
+  props<{ q: string }>()
+);
+
 export const pokemonsLoaded = createAction(
   '[Pokemons] Pokemons Loaded',
   props<{ pokemons: Pokemon[] }>()
