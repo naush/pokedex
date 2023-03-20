@@ -1,6 +1,6 @@
 <div class="pokemon-hero" [class.favorite]="isFavorite">
   <h3>{{ pokemon | heroName }}</h3>
-  <!-- <img class="profile" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon.number }}.png"> -->
+  <img class="profile" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon.number }}.png">
   <div *ngIf="showActions" class="actions">
     <!-- https://www.flaticon.com/free-icon/file_9385278?related_id=9385278&origin=pack -->
     <a routerLink="/{{ pokemon.number }}">
