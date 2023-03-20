@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { PokemonService } from '../services/pokemon.service';
 import { PokemonsEffects } from './pokemons.effects';
 
+// TODO: Write legit tests.
 describe('PokemonsEffects', () => {
   let actions$: Observable<any>;
   let effects: PokemonsEffects;
