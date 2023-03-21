@@ -1,16 +1,19 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonService } from '../services/pokemon.service';
 import { PokemonListComponent } from './pokemon-list.component';
+import { loadPokemons, filterPokemons } from '../actions/pokemons.actions';
 
 describe('PokemonListComponent', () => {
   let component: PokemonListComponent;
   let fixture: ComponentFixture<PokemonListComponent>;
   let pokemonService: PokemonService;
+  let dispatch: any;
 
   const pokemons: Pokemon[] = [
     {
@@ -36,6 +39,11 @@ describe('PokemonListComponent', () => {
       }
     );
 
+    const initialState = {
+      pokemons: { pokemons },
+      favorites: { favorites: [] },
+    }
+
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
@@ -43,14 +51,23 @@ describe('PokemonListComponent', () => {
           provide: PokemonService,
           useValue: pokemonService,
         },
+        provideMockStore({ initialState } ),
       ],
       declarations: [ PokemonListComponent ]
     })
     .compileComponents();
 
+    const store = TestBed.inject(MockStore);
+    dispatch = spyOn(store, 'dispatch').and.callThrough();
+
     fixture = TestBed.createComponent(PokemonListComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
+  });
+
+  it('dispatches load pokemons', () => {
+    expect(dispatch).toHaveBeenCalledWith(loadPokemons());
   });
 
   it('sets #pokemons', () => {
@@ -68,22 +85,13 @@ describe('PokemonListComponent', () => {
   });
 
   describe('#onQueryChange', () => {
-    it('filters pokemons by name', () => {
-      component.onQueryChange('bulbasaur');
+    it('dispatches the filter action with query', () => {
+      const query = 'bulbasaur';
 
-      expect(component.pokemons).toHaveSize(1);
-    });
+      component.onQueryChange(query);
+      fixture.detectChanges();
 
-    it('handles uppercase', () => {
-      component.onQueryChange('Bulbasaur');
-
-      expect(component.pokemons).toHaveSize(1);
-    });
-
-    it('filters out all', () => {
-      component.onQueryChange('none');
-
-      expect(component.pokemons).toHaveSize(0);
+      expect(dispatch).toHaveBeenCalledWith(filterPokemons({ q: query }));
     });
   });
 });

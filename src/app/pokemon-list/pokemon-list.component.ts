@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Pokemon } from '../models/pokemon.model';
 import { PokemonService } from '../services/pokemon.service';
+import { State } from '../reducers';
+import { loadPokemons, filterPokemons } from '../actions/pokemons.actions';
 
 @Component({
   selector: 'pokemon-list',
@@ -9,25 +12,28 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class PokemonListComponent {
   pokemons!: Pokemon[];
+  favorites!: number[];
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(private pokemonService: PokemonService, private store: Store<State>) {}
 
   ngOnInit() {
-    this.pokemonService.all()
-      .subscribe((pokemons: Pokemon[]) => {
-        this.pokemons = pokemons;
-      });
+    this.store.dispatch(loadPokemons());
+
+    // LO: [NgRx] Store
+    this.store
+      .select(state => state.favorites)
+      .subscribe(favs => this.favorites = favs.favorites);
+
+    this.store
+      .select(state => state.pokemons)
+      .subscribe(pokes => this.pokemons = pokes.pokemons);
   }
 
   onQueryChange(q: string) {
-    this.pokemonService.all()
-      .subscribe((pokemons: Pokemon[]) => (
-        this.pokemons = this.filterByName(pokemons, q)
-      ));
+    this.store.dispatch(filterPokemons({ q }));
   }
 
-  private filterByName(pokemons: Pokemon[], q: string): Pokemon[] {
-    return pokemons
-      .filter((pokemon: Pokemon) => pokemon.name.includes(q.toLowerCase()));
+  isFavorite(pokemon: Pokemon): boolean {
+    return this.favorites.includes(pokemon.number);
   }
 }
