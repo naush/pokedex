@@ -22,7 +22,7 @@ export class PokemonsEffects {
                   { pokemons: pokemons }
                 )
               ),
-              catchError((error) => of(pokemonsLoadFailed(error)))
+              catchError((error: Error) => of(pokemonsLoadFailed({ error })))
             )
         ))
       )
@@ -42,7 +42,7 @@ export class PokemonsEffects {
                   { pokemons: this.filterByName(pokemons, q) }
                 )
               ),
-              catchError((error) => of(pokemonsLoadFailed(error)))
+              catchError((error) => of(pokemonsLoadFailed({ error })))
             )
         ))
       )

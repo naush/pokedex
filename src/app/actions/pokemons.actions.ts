@@ -17,5 +17,5 @@ export const pokemonsLoaded = createAction(
 
 export const pokemonsLoadFailed = createAction(
   '[Favorite] Pokemons Load Failed',
-  props<{ error: any }>()
+  props<{ error: Error }>()
 );
